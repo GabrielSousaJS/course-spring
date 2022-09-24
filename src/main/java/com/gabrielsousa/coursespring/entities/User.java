@@ -1,16 +1,21 @@
 package com.gabrielsousa.coursespring.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "systemuser")
 public class User implements Serializable {
     private static final long serivalVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String phone;
-    private String password2;
+    private String pass;
 
     public User() {
     }
@@ -20,7 +25,7 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.password2 = password2;
+        this.pass = password2;
     }
 
     public Long getId() {
@@ -55,12 +60,12 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getPassword2() {
-        return password2;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword2(String password2) {
-        this.password2 = password2;
+    public void setPass(String senha) {
+        this.pass = senha;
     }
 
     @Override
