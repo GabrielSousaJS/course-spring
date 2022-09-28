@@ -2,10 +2,12 @@ package com.gabrielsousa.coursespring.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "systemuser")
+@Table(name = "tb_user")
 public class User implements Serializable {
     private static final long serivalVersionUID = 1L;
 
@@ -17,6 +19,8 @@ public class User implements Serializable {
     private String phone;
     private String pass;
 
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
     public User() {
     }
 
@@ -66,6 +70,10 @@ public class User implements Serializable {
 
     public void setPass(String senha) {
         this.pass = senha;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
