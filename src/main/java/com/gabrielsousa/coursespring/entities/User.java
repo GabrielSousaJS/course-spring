@@ -1,6 +1,9 @@
 package com.gabrielsousa.coursespring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
+    @Serial
     private static final long serivalVersionUID = 1L;
 
     @Id
@@ -19,6 +23,7 @@ public class User implements Serializable {
     private String phone;
     private String pass;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
     public User() {
