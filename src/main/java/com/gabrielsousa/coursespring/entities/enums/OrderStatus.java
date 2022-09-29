@@ -1,4 +1,4 @@
-package com.gabrielsousa.coursespring.entities;
+package com.gabrielsousa.coursespring.entities.enums;
 
 public enum OrderStatus {
 

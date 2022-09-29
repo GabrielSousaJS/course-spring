@@ -1,8 +1,10 @@
 package com.gabrielsousa.coursespring.config;
 
+import com.gabrielsousa.coursespring.entities.Category;
 import com.gabrielsousa.coursespring.entities.Order;
-import com.gabrielsousa.coursespring.entities.OrderStatus;
+import com.gabrielsousa.coursespring.entities.enums.OrderStatus;
 import com.gabrielsousa.coursespring.entities.User;
+import com.gabrielsousa.coursespring.repositories.CategoryRepository;
 import com.gabrielsousa.coursespring.repositories.OrderRepository;
 import com.gabrielsousa.coursespring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import java.util.Arrays;
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -23,6 +28,12 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 

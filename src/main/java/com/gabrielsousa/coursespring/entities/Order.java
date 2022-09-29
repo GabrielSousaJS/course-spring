@@ -1,6 +1,7 @@
 package com.gabrielsousa.coursespring.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gabrielsousa.coursespring.entities.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.io.Serial;
