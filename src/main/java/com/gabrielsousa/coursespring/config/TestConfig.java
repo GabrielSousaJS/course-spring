@@ -1,14 +1,8 @@
 package com.gabrielsousa.coursespring.config;
 
-import com.gabrielsousa.coursespring.entities.Category;
-import com.gabrielsousa.coursespring.entities.Order;
-import com.gabrielsousa.coursespring.entities.Product;
+import com.gabrielsousa.coursespring.entities.*;
 import com.gabrielsousa.coursespring.entities.enums.OrderStatus;
-import com.gabrielsousa.coursespring.entities.User;
-import com.gabrielsousa.coursespring.repositories.CategoryRepository;
-import com.gabrielsousa.coursespring.repositories.OrderRepository;
-import com.gabrielsousa.coursespring.repositories.ProductRepository;
-import com.gabrielsousa.coursespring.repositories.UserRepository;
+import com.gabrielsousa.coursespring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +12,6 @@ import java.util.Arrays;
 
 @Configuration
 public class TestConfig implements CommandLineRunner {
-
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -30,6 +23,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -64,5 +60,12 @@ public class TestConfig implements CommandLineRunner {
         p5.getCategories().add(cat2);
 
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 }

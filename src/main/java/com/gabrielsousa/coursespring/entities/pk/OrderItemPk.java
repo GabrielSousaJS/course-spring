@@ -1,5 +1,6 @@
 package com.gabrielsousa.coursespring.entities.pk;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabrielsousa.coursespring.entities.Order;
 import com.gabrielsousa.coursespring.entities.Product;
 
