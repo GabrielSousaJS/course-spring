@@ -1,6 +1,7 @@
 package com.gabrielsousa.coursespring.resources.exceptions;
 
 import com.gabrielsousa.coursespring.services.exceptions.ResourceNotFoundException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -20,4 +21,11 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<StandardError> database(ResourceNotFoundException e, HttpServletRequest request) {
+        String error = "Database error";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
 }
